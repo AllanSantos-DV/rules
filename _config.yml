@@ -1,0 +1,24 @@
+title: Rules Generator
+description: Guia gerado dinamicamente a partir de módulos Markdown
+theme: null
+markdown: kramdown
+plugins: []
+
+exclude:
+  - node_modules
+  - vendor
+
+include:
+  - doc/
+  - assets/
+  - index.html
+  - preview.html
+  - _layouts/
+  - _includes/
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+
