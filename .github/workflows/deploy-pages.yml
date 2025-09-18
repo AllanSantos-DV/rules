@@ -27,22 +27,23 @@ jobs:
           echo "No build configured; copying files as-is"
 
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v1
+        id: upload-pages
+        uses: actions/upload-pages-artifact@v4
         with:
-          path: |
-            .
+          path: .
 
   deploy:
     needs: build-deploy
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.page-url.outputs.page_url }}
 
     steps:
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v1
+        id: deploy
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: github-pages
 
       - name: Get Pages URL
-        id: page-url
-        run: echo "page_url=https://$GITHUB_REPOSITORY_OWNER.github.io/${GITHUB_REPOSITORY#*/}" >> $GITHUB_OUTPUT
+        run: echo "Page deployed: ${{ steps.deploy.outputs.page_url }}"
