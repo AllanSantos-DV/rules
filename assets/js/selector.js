@@ -331,7 +331,7 @@ async function init(){
     if (selection.version.java) params.set('version.java', selection.version.java);
     if (selection.version.python) params.set('version.python', selection.version.python);
     if (selection.distribution) params.set('distribution', selection.distribution);
-    q('#toPreview').setAttribute('href', '/preview.html?'+params.toString());
+  q('#toPreview').setAttribute('href', './preview.html?'+params.toString());
   });
 }
 

@@ -9,7 +9,7 @@ exclude:
   - vendor
 
 include:
-  - doc/
+  - docs/
   - assets/
   - index.html
   - preview.html
