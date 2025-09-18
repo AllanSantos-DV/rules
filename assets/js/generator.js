@@ -5,6 +5,22 @@ async function fetchText(path){
   return await res.text();
 }
 
+// Robust fetch: try several candidate paths to account for base path differences (GitHub Pages)
+async function fetchTextTry(paths){
+  let lastErr = null;
+  for(const p of paths){
+    try{
+      const text = await fetchText(p);
+      console.debug('[fetchTextTry] loaded', p);
+      return text;
+    }catch(err){
+      lastErr = err;
+      console.warn('[fetchTextTry] failed', p, err.message);
+    }
+  }
+  throw lastErr || new Error('All fetch attempts failed');
+}
+
 function parseAnchors(md){
   const anchors = [];
   md.split('\n').forEach(raw=>{
@@ -117,14 +133,29 @@ async function run(){
   sel.version.python = params.get('version.python')||sel.version.python||'';
   sel.distribution = params.get('distribution')||sel.distribution||'';
 
-  const template = await fetchText('./docs/template/FINAL_TEMPLATE.md');
+  // Try multiple candidate paths so the loader works both locally and on Pages subpaths
+  const baseCandidates = [
+    './docs/template/FINAL_TEMPLATE.md',
+    'docs/template/FINAL_TEMPLATE.md',
+    // site-root relative (e.g. /owner/repo/docs/...)
+    new URL('./docs/template/FINAL_TEMPLATE.md', location.origin + location.pathname).href
+  ];
+  const template = await fetchTextTry(baseCandidates);
   const {front, body, raw} = parseFrontMatter(template);
   let finalText = fillScope(template, sel);
 
   // include global then specific blocks
   const files = mapSelectionToFiles(sel);
   console.log('[generator] files', files);
-  const partsRaw = await Promise.all(files.map(f => fetchText('./' + f)));
+  // Build candidate paths for each file and try to load them robustly
+  const partsRaw = await Promise.all(files.map(async (f)=>{
+    const candidates = [
+      './' + f,
+      f,
+      new URL('./' + f, location.origin + location.pathname).href
+    ];
+    return await fetchTextTry(candidates);
+  }));
   const stripFront = (t)=>{
     const m = t.match(/^---[\s\S]*?---\r?\n/);
     return m ? t.slice(m[0].length) : t;
