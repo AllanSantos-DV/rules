@@ -48,50 +48,50 @@ function extractDescFromMd(md){
 
 async function preloadDescriptions(){
   const files = [
-    'doc/backend/java/arch-mvc.md',
-    'doc/backend/java/arch-hexagonal.md',
-    'doc/backend/java/framework-spring-boot-2x.md',
-    'doc/backend/java/framework-spring-boot-3x.md',
-    'doc/backend/java/framework-quarkus-2x.md',
-    'doc/backend/java/framework-quarkus-3x.md',
-    'doc/backend/java/framework-micronaut-3x.md',
-    'doc/backend/java/framework-micronaut-4x.md',
-    'doc/backend/java/version-11.md',
-    'doc/backend/java/version-17.md',
-    'doc/backend/java/version-21.md',
+    'docs/backend/java/arch-mvc.md',
+    'docs/backend/java/arch-hexagonal.md',
+    'docs/backend/java/framework-spring-boot-2x.md',
+    'docs/backend/java/framework-spring-boot-3x.md',
+    'docs/backend/java/framework-quarkus-2x.md',
+    'docs/backend/java/framework-quarkus-3x.md',
+    'docs/backend/java/framework-micronaut-3x.md',
+    'docs/backend/java/framework-micronaut-4x.md',
+    'docs/backend/java/version-11.md',
+    'docs/backend/java/version-17.md',
+    'docs/backend/java/version-21.md',
     // Python
-    'doc/backend/python/framework-django.md',
-    'doc/backend/python/framework-flask.md',
-    'doc/backend/python/framework-fastapi.md',
-    'doc/backend/python/arch-mvc.md',
-    'doc/backend/python/arch-hexagonal.md',
-    'doc/backend/python/version-3.8.md',
-    'doc/backend/python/version-3.10.md',
-    'doc/backend/python/version-3.12.md',
+  'docs/backend/python/framework-django.md',
+  'docs/backend/python/framework-flask.md',
+  'docs/backend/python/framework-fastapi.md',
+  'docs/backend/python/arch-mvc.md',
+  'docs/backend/python/arch-hexagonal.md',
+  'docs/backend/python/version-3.8.md',
+  'docs/backend/python/version-3.10.md',
+  'docs/backend/python/version-3.12.md',
     // Web
-    'doc/web/stack-html-css-js.md',
-    'doc/web/stack-react.md',
-    'doc/web/stack-angular.md',
-    'doc/web/stack-vue.md',
-    'doc/web/arch-spa.md',
-    'doc/web/arch-ssr.md',
-    'doc/web/arch-microfrontends.md',
-    'doc/web/css-tailwind.md',
-    'doc/web/css-bootstrap.md',
-    'doc/web/css-mui.md'
+  'docs/web/stack-html-css-js.md',
+  'docs/web/stack-react.md',
+  'docs/web/stack-angular.md',
+  'docs/web/stack-vue.md',
+  'docs/web/arch-spa.md',
+  'docs/web/arch-ssr.md',
+  'docs/web/arch-microfrontends.md',
+  'docs/web/css-tailwind.md',
+  'docs/web/css-bootstrap.md',
+  'docs/web/css-mui.md'
     ,
     // Desktop (Python)
-    'doc/desktop/python/framework-pyside6.md',
-    'doc/desktop/python/framework-tkinter.md',
-    'doc/desktop/python/framework-kivy.md',
-    'doc/desktop/python/arch-mvvm.md',
-    'doc/desktop/python/arch-mvc.md',
-    'doc/desktop/python/version-3.13.md',
-    'doc/desktop/windows-distribution.md'
+    'docs/desktop/python/framework-pyside6.md',
+    'docs/desktop/python/framework-tkinter.md',
+    'docs/desktop/python/framework-kivy.md',
+    'docs/desktop/python/arch-mvvm.md',
+    'docs/desktop/python/arch-mvc.md',
+    'docs/desktop/python/version-3.13.md',
+    'docs/desktop/windows-distribution.md'
   ];
   const descMap = {};
   try{
-    const texts = await Promise.all(files.map(f=>fetchTextNoCache('/'+f)));
+    const texts = await Promise.all(files.map(f=>fetchTextNoCache('./'+f)));
     texts.forEach((md,i)=>{ const d = extractDescFromMd(md); if(d) descMap[files[i]] = d; });
   }catch(err){ console.error('[preloadDescriptions] error', err); }
   window.__RG_DESCRIPTIONS = Object.assign({}, window.__RG_DESCRIPTIONS||{}, descMap);
@@ -259,8 +259,8 @@ function cardGroup(title, options, onSelect, currentValue) {
 }
 
 function renderHint(){
+  // Persist selection silently (do not expose the JSON in the UI)
   const s = {...selection};
-  q('#selectionHint').textContent = JSON.stringify(s);
   sessionStorage.setItem('rg.selection', JSON.stringify(s));
 }
 

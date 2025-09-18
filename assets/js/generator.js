@@ -62,30 +62,30 @@ function fillScope(template, sel){
 }
 
 function mapSelectionToFiles(sel){
-  const files = ['doc/global/agent-folder.md', 'doc/global/process-analysis.md'];
+  const files = ['docs/global/agent-folder.md', 'docs/global/process-analysis.md'];
   if(sel.domain==='backend' && sel.language==='java'){
     if(sel.framework && sel.frameworkVersion){
       const fwv = String(sel.frameworkVersion).replace(/\./g,'');
-      files.push(`doc/backend/java/framework-${sel.framework}-${fwv}.md`);
+      files.push(`docs/backend/java/framework-${sel.framework}-${fwv}.md`);
     }
-    if(sel.architecture==='hexagonal') files.push('doc/backend/java/arch-hexagonal.md');
-    if(sel.architecture==='mvc') files.push('doc/backend/java/arch-mvc.md');
-    if(sel.version?.java) files.push(`doc/backend/java/version-${sel.version.java}.md`);
+    if(sel.architecture==='hexagonal') files.push('docs/backend/java/arch-hexagonal.md');
+    if(sel.architecture==='mvc') files.push('docs/backend/java/arch-mvc.md');
+    if(sel.version?.java) files.push(`docs/backend/java/version-${sel.version.java}.md`);
   } else if(sel.domain==='backend' && sel.language==='python'){
-    if(sel.framework) files.push(`doc/backend/python/framework-${sel.framework}.md`);
-    if(sel.architecture==='hexagonal') files.push('doc/backend/python/arch-hexagonal.md');
-    if(sel.architecture==='mvc') files.push('doc/backend/python/arch-mvc.md');
-    if(sel.version?.python) files.push(`doc/backend/python/version-${sel.version.python}.md`);
+    if(sel.framework) files.push(`docs/backend/python/framework-${sel.framework}.md`);
+    if(sel.architecture==='hexagonal') files.push('docs/backend/python/arch-hexagonal.md');
+    if(sel.architecture==='mvc') files.push('docs/backend/python/arch-mvc.md');
+    if(sel.version?.python) files.push(`docs/backend/python/version-${sel.version.python}.md`);
   } else if(sel.domain==='web'){
-    if(sel.framework==='base') files.push('doc/web/stack-html-css-js.md');
-    if(['react','angular','vue'].includes(sel.framework||'')) files.push(`doc/web/stack-${sel.framework}.md`);
-    if(['spa','ssr','microfrontends'].includes(sel.architecture||'')) files.push(`doc/web/arch-${sel.architecture}.md`);
-    if(sel.css) files.push(`doc/web/css-${sel.css}.md`);
+    if(sel.framework==='base') files.push('docs/web/stack-html-css-js.md');
+    if(['react','angular','vue'].includes(sel.framework||'')) files.push(`docs/web/stack-${sel.framework}.md`);
+    if(['spa','ssr','microfrontends'].includes(sel.architecture||'')) files.push(`docs/web/arch-${sel.architecture}.md`);
+    if(sel.css) files.push(`docs/web/css-${sel.css}.md`);
   } else if(sel.domain==='desktop'){
-    if(['pyside6','tkinter','kivy'].includes(sel.framework||'')) files.push(`doc/desktop/python/framework-${sel.framework}.md`);
-    if(['mvvm','mvc'].includes(sel.architecture||'')) files.push(`doc/desktop/python/arch-${sel.architecture}.md`);
-    if(sel.version?.python) files.push(`doc/desktop/python/version-${sel.version.python}.md`);
-    if(sel.distribution==='windows') files.push('doc/desktop/windows-distribution.md');
+    if(['pyside6','tkinter','kivy'].includes(sel.framework||'')) files.push(`docs/desktop/python/framework-${sel.framework}.md`);
+    if(['mvvm','mvc'].includes(sel.architecture||'')) files.push(`docs/desktop/python/arch-${sel.architecture}.md`);
+    if(sel.version?.python) files.push(`docs/desktop/python/version-${sel.version.python}.md`);
+    if(sel.distribution==='windows') files.push('docs/desktop/windows-distribution.md');
   }
   return files;
 }
@@ -117,14 +117,14 @@ async function run(){
   sel.version.python = params.get('version.python')||sel.version.python||'';
   sel.distribution = params.get('distribution')||sel.distribution||'';
 
-  const template = await fetchText('/doc/template/FINAL_TEMPLATE.md');
+  const template = await fetchText('./docs/template/FINAL_TEMPLATE.md');
   const {front, body, raw} = parseFrontMatter(template);
   let finalText = fillScope(template, sel);
 
   // include global then specific blocks
   const files = mapSelectionToFiles(sel);
   console.log('[generator] files', files);
-  const partsRaw = await Promise.all(files.map(fetchText));
+  const partsRaw = await Promise.all(files.map(f => fetchText('./' + f)));
   const stripFront = (t)=>{
     const m = t.match(/^---[\s\S]*?---\r?\n/);
     return m ? t.slice(m[0].length) : t;
