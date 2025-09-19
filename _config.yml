@@ -1,59 +1,12 @@
-# GitHub Pages Configuration
+# GitHub Pages Configuration - Static Site (No Jekyll)
 title: Rules Generator
 description: Sistema de geração de documentação modular para desenvolvimento de software
 author: Allan Santos
 url: https://allansantos-dv.github.io
 baseurl: /rules
 
-# GitHub Pages Settings
-theme: null
-markdown: kramdown
-highlighter: rouge
-plugins:
-  - jekyll-feed
-  - jekyll-sitemap
-  - jekyll-seo-tag
-
-# Build Settings
-source: .
-destination: _site
-# Serve raw files from docs/ directory
-keep_files:
-  - docs/
-  - assets/docs/
-
-# Don't process these files as Jekyll pages
-exclude:
-  - node_modules
-  - vendor
-  - .git
-  - .gitignore
-  - README.md
-  - .github
-
-include:
-  - docs/
-  - assets/
-  - index.html
-  - preview.html
-  - _layouts/
-  - _includes/
-
-# Default Layout
-defaults:
-  - scope:
-      path: ""
-    values:
-      layout: default
-
-# SEO Settings
-seo:
-  type: Website
-  locale: pt_BR
-  twitter:
-    creator: "@AllanSantos-DV"
-  facebook:
-    app_id: ""
+# Static site configuration (no Jekyll processing)
+# All files will be served as-is due to .nojekyll file
 
 # Custom Settings
 rules_generator:
@@ -66,4 +19,3 @@ rules_generator:
   github:
     username: "AllanSantos-DV"
     repository: "rules"
-
