@@ -150,30 +150,30 @@ index:
 }
 
 function mapSelectionToFiles(sel){
-  const files = ['docs/global/agent-folder.md', 'docs/global/process-analysis.md'];
+  const files = ['markdown-docs/global/agent-folder.md', 'markdown-docs/global/process-analysis.md'];
   if(sel.domain==='backend' && sel.language==='java'){
     if(sel.framework && sel.frameworkVersion){
       const fwv = String(sel.frameworkVersion).replace(/\./g,'');
-      files.push(`docs/backend/java/framework-${sel.framework}-${fwv}.md`);
+      files.push(`markdown-docs/backend/java/framework-${sel.framework}-${fwv}.md`);
     }
-    if(sel.architecture==='hexagonal') files.push('docs/backend/java/arch-hexagonal.md');
-    if(sel.architecture==='mvc') files.push('docs/backend/java/arch-mvc.md');
-    if(sel.version?.java) files.push(`docs/backend/java/version-${sel.version.java}.md`);
+    if(sel.architecture==='hexagonal') files.push('markdown-docs/backend/java/arch-hexagonal.md');
+    if(sel.architecture==='mvc') files.push('markdown-docs/backend/java/arch-mvc.md');
+    if(sel.version?.java) files.push(`markdown-docs/backend/java/version-${sel.version.java}.md`);
   } else if(sel.domain==='backend' && sel.language==='python'){
-    if(sel.framework) files.push(`docs/backend/python/framework-${sel.framework}.md`);
-    if(sel.architecture==='hexagonal') files.push('docs/backend/python/arch-hexagonal.md');
-    if(sel.architecture==='mvc') files.push('docs/backend/python/arch-mvc.md');
-    if(sel.version?.python) files.push(`docs/backend/python/version-${sel.version.python}.md`);
+    if(sel.framework) files.push(`markdown-docs/backend/python/framework-${sel.framework}.md`);
+    if(sel.architecture==='hexagonal') files.push('markdown-docs/backend/python/arch-hexagonal.md');
+    if(sel.architecture==='mvc') files.push('markdown-docs/backend/python/arch-mvc.md');
+    if(sel.version?.python) files.push(`markdown-docs/backend/python/version-${sel.version.python}.md`);
   } else if(sel.domain==='web'){
-    if(sel.framework==='base') files.push('docs/web/stack-html-css-js.md');
-    if(['react','angular','vue'].includes(sel.framework||'')) files.push(`docs/web/stack-${sel.framework}.md`);
-    if(['spa','ssr','microfrontends'].includes(sel.architecture||'')) files.push(`docs/web/arch-${sel.architecture}.md`);
-    if(sel.css) files.push(`docs/web/css-${sel.css}.md`);
+    if(sel.framework==='base') files.push('markdown-docs/web/stack-html-css-js.md');
+    if(['react','angular','vue'].includes(sel.framework||'')) files.push(`markdown-docs/web/stack-${sel.framework}.md`);
+    if(['spa','ssr','microfrontends'].includes(sel.architecture||'')) files.push(`markdown-docs/web/arch-${sel.architecture}.md`);
+    if(sel.css) files.push(`markdown-docs/web/css-${sel.css}.md`);
   } else if(sel.domain==='desktop'){
-    if(['pyside6','tkinter','kivy'].includes(sel.framework||'')) files.push(`docs/desktop/python/framework-${sel.framework}.md`);
-    if(['mvvm','mvc'].includes(sel.architecture||'')) files.push(`docs/desktop/python/arch-${sel.architecture}.md`);
-    if(sel.version?.python) files.push(`docs/desktop/python/version-${sel.version.python}.md`);
-    if(sel.distribution==='windows') files.push('docs/desktop/windows-distribution.md');
+    if(['pyside6','tkinter','kivy'].includes(sel.framework||'')) files.push(`markdown-docs/desktop/python/framework-${sel.framework}.md`);
+    if(['mvvm','mvc'].includes(sel.architecture||'')) files.push(`markdown-docs/desktop/python/arch-${sel.architecture}.md`);
+    if(sel.version?.python) files.push(`markdown-docs/desktop/python/version-${sel.version.python}.md`);
+    if(sel.distribution==='windows') files.push('markdown-docs/desktop/windows-distribution.md');
   }
   return files;
 }
