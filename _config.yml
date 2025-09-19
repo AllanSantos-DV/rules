@@ -20,6 +20,7 @@ destination: _site
 # Serve raw files from docs/ directory
 keep_files:
   - docs/
+  - assets/docs/
 
 # Don't process these files as Jekyll pages
 exclude:
