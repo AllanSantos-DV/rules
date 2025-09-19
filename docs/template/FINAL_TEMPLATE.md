@@ -35,11 +35,11 @@ index:
 - Este documento consolida as seções globais e específicas da seleção do usuário.
 - Use o índice em `index.anchors` para saltar diretamente para a seção desejada.
 
-<!-- REQUIRED: O gerador DEVE inserir aqui o conteúdo de doc/global/agent-folder.md -->
-<!-- INCLUDE: doc/global/agent-folder.md -->
+<!-- REQUIRED: O gerador DEVE inserir aqui o conteúdo de docs/global/agent-folder.md -->
+<!-- INCLUDE: docs/global/agent-folder.md -->
 
-<!-- REQUIRED: O gerador DEVE inserir aqui o conteúdo de doc/global/process-analysis.md -->
-<!-- INCLUDE: doc/global/process-analysis.md -->
+<!-- REQUIRED: O gerador DEVE inserir aqui o conteúdo de docs/global/process-analysis.md -->
+<!-- INCLUDE: docs/global/process-analysis.md -->
 
 <!-- Depois, inserir os blocos específicos selecionados pelo usuário -->
 <!-- INCLUDE: {{SELECTED_BLOCKS}} -->
