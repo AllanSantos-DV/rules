@@ -10,8 +10,11 @@ async function fetchTextTry(paths){
   let lastErr = null;
   for(const p of paths){
     try{
-      const text = await fetchText(p);
-      console.debug('[fetchTextTry] loaded', p);
+      // Convert relative paths to absolute for GitHub Pages
+      const absolutePath = p.startsWith('/') ? p : 
+        (location.pathname.includes('/rules') ? '/rules/' + p : '/' + p);
+      const text = await fetchText(absolutePath);
+      console.debug('[fetchTextTry] loaded', absolutePath);
       return text;
     }catch(err){
       lastErr = err;
@@ -77,6 +80,12 @@ function fillScope(template, sel){
     .replace('{{DYNAMIC_ANCHORS}}', '...'); // placeholder para âncoras dinâmicas
 }
 
+// Helper function to get correct path for GitHub Pages
+function getDocPath(path) {
+  const baseUrl = location.pathname.includes('/rules') ? '/rules' : '';
+  return baseUrl + '/' + path;
+}
+
 function mapSelectionToFiles(sel){
   const files = ['docs/global/agent-folder.md', 'docs/global/process-analysis.md'];
   if(sel.domain==='backend' && sel.language==='java'){
@@ -137,6 +146,7 @@ async function run(){
   const baseCandidates = [
     './docs/template/FINAL_TEMPLATE.md',
     'docs/template/FINAL_TEMPLATE.md',
+    '/rules/docs/template/FINAL_TEMPLATE.md',
     // site-root relative (e.g. /owner/repo/docs/...)
     new URL('./docs/template/FINAL_TEMPLATE.md', location.origin + location.pathname).href
   ];

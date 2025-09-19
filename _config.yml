@@ -23,11 +23,6 @@ exclude:
   - .git
   - .gitignore
   - README.md
-  - EXPANSION_GUIDE.md
-  - DEPLOY_GUIDE.md
-  - QUICK_DEPLOY.md
-  - DEPENDENCY_FIX.md
-  - DATE_VALIDATION.md
   - .github
 
 include:
