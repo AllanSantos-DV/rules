@@ -17,6 +17,11 @@ plugins:
 # Build Settings
 source: .
 destination: _site
+# Serve raw files from docs/ directory
+keep_files:
+  - docs/
+
+# Don't process these files as Jekyll pages
 exclude:
   - node_modules
   - vendor
@@ -32,10 +37,6 @@ include:
   - preview.html
   - _layouts/
   - _includes/
-
-# Serve raw files from docs/template/
-keep_files:
-  - docs/template/
 
 # Default Layout
 defaults:
