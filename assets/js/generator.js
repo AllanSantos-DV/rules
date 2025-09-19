@@ -1,6 +1,8 @@
 async function fetchText(path){
   const v = (window.__RGV?('?v='+window.__RGV):'');
+  console.log('[fetchText] Attempting to fetch:', path + v);
   const res = await fetch(path + v, {cache:'no-store'});
+  console.log('[fetchText] Response status:', res.status, 'for path:', path);
   if(!res.ok) throw new Error('Falha ao carregar: '+path);
   return await res.text();
 }
@@ -8,17 +10,29 @@ async function fetchText(path){
 // Robust fetch: try several candidate paths to account for base path differences (GitHub Pages)
 async function fetchTextTry(paths){
   let lastErr = null;
+  console.log('[fetchTextTry] Starting with paths:', paths);
+  console.log('[fetchTextTry] Current location:', location.href);
+  console.log('[fetchTextTry] Pathname:', location.pathname);
+  
   for(const p of paths){
     try{
       // Convert relative paths to absolute for GitHub Pages
-      const absolutePath = p.startsWith('/') ? p : 
-        (location.pathname.includes('/rules') ? '/rules/' + p : '/' + p);
+      let absolutePath = p;
+      if (!p.startsWith('http') && !p.startsWith('/')) {
+        // Relative path - determine base
+        if (location.pathname.includes('/rules')) {
+          absolutePath = '/rules/' + p;
+        } else {
+          absolutePath = '/' + p;
+        }
+      }
+      console.log('[fetchTextTry] Trying path:', absolutePath);
       const text = await fetchText(absolutePath);
-      console.debug('[fetchTextTry] loaded', absolutePath);
+      console.log('[fetchTextTry] SUCCESS loaded:', absolutePath);
       return text;
     }catch(err){
       lastErr = err;
-      console.warn('[fetchTextTry] failed', p, err.message);
+      console.warn('[fetchTextTry] FAILED', p, err.message);
     }
   }
   throw lastErr || new Error('All fetch attempts failed');
@@ -146,6 +160,7 @@ async function run(){
   const baseCandidates = [
     './docs/template/FINAL_TEMPLATE.md',
     'docs/template/FINAL_TEMPLATE.md',
+    '/docs/template/FINAL_TEMPLATE.md',
     '/rules/docs/template/FINAL_TEMPLATE.md',
     // site-root relative (e.g. /owner/repo/docs/...)
     new URL('./docs/template/FINAL_TEMPLATE.md', location.origin + location.pathname).href
