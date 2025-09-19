@@ -33,6 +33,10 @@ include:
   - _layouts/
   - _includes/
 
+# Serve raw files from docs/template/
+keep_files:
+  - docs/template/
+
 # Default Layout
 defaults:
   - scope:
