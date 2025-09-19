@@ -168,4 +168,6 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para de
 
 ---
 
-**Desenvolvido com ❤️ para a comunidade de desenvolvedores**
+**Desenvolvido com ❤️ por [Allan Santos](https://github.com/AllanSantos-DV) para a comunidade de desenvolvedores**
+
+**© 2025 Rules Generator - Todos os direitos reservados**

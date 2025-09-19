@@ -1,12 +1,12 @@
 source "https://rubygems.org"
 
+# Ruby version
+ruby "3.1.7"
+
 # Jekyll
 gem "jekyll", "~> 4.3"
 
-# GitHub Pages
-gem "github-pages", group: :jekyll_plugins
-
-# Plugins
+# GitHub Pages compatible plugins only
 gem "jekyll-feed", "~> 0.12"
 gem "jekyll-sitemap", "~> 1.4"
 gem "jekyll-seo-tag", "~> 2.8"

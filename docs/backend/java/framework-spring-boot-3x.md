@@ -28,7 +28,7 @@ Ver também
 
 - Java 17+ obrigatório; use `--release 17` (ou superior) na build.
 - Jakarta EE 9+: pacotes `jakarta.*` em vez de `javax.*` (validação, JPA, etc.).
-- Spring Framework 6; Spring Security 6; Spring Data 2023.x.
+- Spring Framework 6; Spring Security 6; Spring Data 2024.x.
 
 Checklist
 - [ ] Build configurada para Java 17+

@@ -185,16 +185,16 @@ Checklist
     "style": "rest",
     "openapi": "3.1"
   },
-  "updatedAt": "2025-09-14T10:00:00Z"
+  "updatedAt": "2025-01-18T10:00:00Z"
 }
 ```
 
 ### `.agente/decisoes.log` (append-only)
 ```
-[2025-09-14T10:01:12Z] infer: language=java (pom.xml)
-[2025-09-14T10:02:05Z] adopt: architecture=hexagonal (user-confirmed)
-[2025-09-14T10:05:30Z] create: domain entity Usuario (src/main/java/...)
-[2025-09-14T10:06:00Z] update: contexto.json (java=21; openapi=3.1)
+[2025-01-18T10:01:12Z] infer: language=java (pom.xml)
+[2025-01-18T10:02:05Z] adopt: architecture=hexagonal (user-confirmed)
+[2025-01-18T10:05:30Z] create: domain entity Usuario (src/main/java/...)
+[2025-01-18T10:06:00Z] update: contexto.json (java=21; openapi=3.1)
 ```
 
 ### `.agente/rastreamento/entidades.json`
@@ -244,7 +244,7 @@ Checklist
       "title": "Definir SGBD padrão",
       "severity": "high", 
       "status": "open", 
-      "createdAt": "2025-09-14T10:10:00Z",
+      "createdAt": "2025-01-18T10:10:00Z",
       "context": {
         "area": "infra.database",
         "blockedActions": ["generate-repository", "run-migrations"]
@@ -263,7 +263,7 @@ Checklist
       "title": "Confirmar arquitetura: hexagonal",
       "severity": "medium",
       "status": "open",
-      "createdAt": "2025-09-14T10:12:00Z",
+      "createdAt": "2025-01-18T10:12:00Z",
       "context": {"area": "architecture"}
     }
   ]
@@ -427,7 +427,7 @@ Exemplo mínimo
   "schemaVersion": 1,
   "language": "java",
   "architecture": "hexagonal",
-  "updatedAt": "2025-09-14T10:00:00Z"
+  "updatedAt": "2025-01-18T10:00:00Z"
 }
 ```
 

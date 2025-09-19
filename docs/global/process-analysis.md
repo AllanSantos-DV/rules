@@ -2,7 +2,7 @@
 title: Processo de Análise para Resolução de Problemas
 description: Processo sistemático de análise e resolução de problemas técnicos com foco em contextualização completa antes da implementação
 version: 1.0
-lastUpdated: 2024-12-19
+lastUpdated: 2025-01-18
 tags: [analysis, problem-solving, methodology, process]
 ---
 
