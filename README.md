@@ -14,25 +14,33 @@ O Rules Generator é uma ferramenta web que permite criar documentos de regras d
 - **🔄 Cache-Busting**: Sistema anti-cache para desenvolvimento
 - **📱 Responsivo**: Funciona perfeitamente em desktop e mobile
 
-## 🚀 Como Usar
+## 🚀 Deploy
 
-### Instalação Local
+### GitHub Pages
 
-1. **Clone o repositório**:
-   ```bash
-   git clone <repository-url>
-   cd rules
-   ```
+O projeto está configurado para deploy automático no GitHub Pages:
 
-2. **Inicie o servidor local**:
-   ```bash
-   python -m http.server 8000
-   ```
+1. **Clone** o repositório
+2. **Configure** `_config.yml` com sua URL
+3. **Push** para branch `main`
+4. **GitHub Actions** faz o deploy automaticamente
 
-3. **Acesse no navegador**:
-   ```
-   http://localhost:8000
-   ```
+**📄 [Guia Completo de Deploy](DEPLOY_GUIDE.md)**
+
+**🌐 [Site Online](https://allansantos-dv.github.io/rules)**
+
+### Deploy Local
+
+```bash
+# Instalar dependências
+bundle install
+
+# Servidor local
+bundle exec jekyll serve
+
+# Acessar
+http://localhost:4000
+```
 
 ### Fluxo de Uso
 
@@ -153,9 +161,10 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para de
 
 ## 🆘 Suporte
 
-- **Issues**: [GitHub Issues](https://github.com/your-repo/issues)
-- **Documentação**: [Wiki do Projeto](https://github.com/your-repo/wiki)
-- **Discussões**: [GitHub Discussions](https://github.com/your-repo/discussions)
+- **Issues**: [GitHub Issues](https://github.com/AllanSantos-DV/rules/issues)
+- **Documentação**: [Wiki do Projeto](https://github.com/AllanSantos-DV/rules/wiki)
+- **Discussões**: [GitHub Discussions](https://github.com/AllanSantos-DV/rules/discussions)
+- **Autor**: [AllanSantos-DV](https://github.com/AllanSantos-DV)
 
 ---
 

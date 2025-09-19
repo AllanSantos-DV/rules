@@ -1,12 +1,30 @@
+# GitHub Pages Configuration
 title: Rules Generator
-description: Guia gerado dinamicamente a partir de módulos Markdown
+description: Sistema de geração de documentação modular para desenvolvimento de software
+author: Allan Santos
+url: https://allansantos-dv.github.io
+baseurl: /rules
+
+# GitHub Pages Settings
 theme: null
 markdown: kramdown
-plugins: []
+highlighter: rouge
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
 
+# Build Settings
+source: .
+destination: _site
 exclude:
   - node_modules
   - vendor
+  - .git
+  - .gitignore
+  - README.md
+  - EXPANSION_GUIDE.md
+  - .github
 
 include:
   - docs/
@@ -16,9 +34,31 @@ include:
   - _layouts/
   - _includes/
 
+# Default Layout
 defaults:
   - scope:
       path: ""
     values:
       layout: default
+
+# SEO Settings
+seo:
+  type: Website
+  locale: pt_BR
+  twitter:
+    creator: "@AllanSantos-DV"
+  facebook:
+    app_id: ""
+
+# Custom Settings
+rules_generator:
+  version: "1.0.0"
+  last_updated: "2025-01-18"
+  supported_domains:
+    - backend
+    - web
+    - desktop
+  github:
+    username: "AllanSantos-DV"
+    repository: "rules"
 
